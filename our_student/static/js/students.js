@@ -1,4 +1,4 @@
-//* CSRF helper (you already have this)
+//* CSRF helper
 function getCookie(name) {
   let cookieValue = null;
   if (document.cookie && document.cookie !== "") {
