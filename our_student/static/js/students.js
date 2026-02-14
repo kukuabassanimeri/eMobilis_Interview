@@ -15,23 +15,31 @@ function getCookie(name) {
 }
 const csrftoken = getCookie("csrftoken");
 
-const API_LIST_URL = "http://127.0.0.1:8000/student-list/"; //* Load all students from the database.
+const API_LIST_URL = "http://127.0.0.1:8000/student-list/";
+const API_DETAIL_URL = "http://127.0.0.1:8000/student/";
 
-const API_DETAIL_URL = "http://127.0.0.1:8000/student/"; //* Delete student.
-
+//* Load students into table
 function loadStudents() {
   fetch(API_LIST_URL)
     .then(res => res.json())
     .then(data => {
-      let list = document.getElementById("students");
-      list.innerHTML = "";
+      const tableBody = document.getElementById("students");
+      tableBody.innerHTML = "";
 
       data.forEach(student => {
-        list.innerHTML += `
-          <li>
-            ${student.stud_no} ${student.stud_name} (${student.course})
-            <button onclick="deleteStudent(${student.id})">Delete</button>
-          </li>
+        tableBody.innerHTML += `
+          <tr>
+            <td>${student.id}</td>
+            <td>${student.stud_no}</td>
+            <td>${student.stud_name}</td>
+            <td>${student.stud_age}</td>
+            <td>${student.course}</td>
+            <td>
+              <button class="btn btn-danger btn-sm" onclick="deleteStudent(${student.id})">
+                <i class="bi bi-trash"></i> Delete
+              </button>
+            </td>
+          </tr>
         `;
       });
     });
@@ -54,4 +62,5 @@ function deleteStudent(id) {
   .catch(err => console.log(err));
 }
 
+// Initial load
 loadStudents();
