@@ -15,8 +15,9 @@ function getCookie(name) {
 }
 const csrftoken = getCookie("csrftoken");
 
-const API_LIST_URL = "http://127.0.0.1:8000/student-list/";
-const API_DETAIL_URL = "http://127.0.0.1:8000/student/";
+const API_LIST_URL = "http://127.0.0.1:8000/student-list/"; //* List and add students API endpoint
+
+const API_DETAIL_URL = "http://127.0.0.1:8000/student/"; //* List, update and delete student API endpoint
 
 //* Load students into table
 function loadStudents() {
